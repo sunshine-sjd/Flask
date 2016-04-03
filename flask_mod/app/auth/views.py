@@ -83,7 +83,6 @@ def resend_confirmation():
 def change_password():
     form = ChangePasswordForm()
     if form.validate_on_submit():
-        print current_user
         if current_user.verify_password(form.old_password.data):
             current_user.password = form.password.data
             db.session.add(current_user)
@@ -156,3 +155,4 @@ def change_email(token):
     else:
         flash('Invalid request.')
     return redirect(url_for('main.index'))
+
